@@ -16,7 +16,11 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // We'll hook this up to a real service later
+
+    const phone = "2347061070007"; // replace with your number e.g 2348012345678
+    const message = `Hello Sawfiyah!%0A%0AName: ${form.name}%0AEmail: ${form.email}%0A%0AMessage: ${form.message}`;
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
     setSent(true);
   };
 
