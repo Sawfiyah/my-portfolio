@@ -4,27 +4,27 @@ import { FaGithub } from "react-icons/fa";
 
 const projects = [
   {
-    title: "Project One",
+    title: "Pura Skin",
     description:
-      "A short description of what this project does and the problem it solves.",
+      "A responsive full-stack skincare e-commerce application built with React and Django, featuring product browsing, dynamic product pages, shopping cart functionality, and a user-friendly interface. Designed with an emphasis on responsive design, usability, and modern web development practices.",
     tags: ["React", "Django", "Python"],
     github: "#",
+    live: "https://puraskin.vercel.app",
+  },
+  {
+    title: "AeroFind",
+    description:
+      "A responsive full-stack flight booking platform for domestic travel, featuring flight search, booking workflows, dynamic flight listings, and a modern user interface. Developed using React for the frontend and Django for the backend with dummy flight data to simulate a real-world booking system",
+    tags: ["Python", "Django", "React"],
+    github: "https://github.com/Sawfiyah/AeroFind",
     live: "#",
   },
   {
-    title: "Project Two",
+    title: "Currently Building",
     description:
-      "A short description of what this project does and the problem it solves.",
-    tags: ["React", "JavaScript", "CSS"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Project Three",
-    description:
-      "A short description of what this project does and the problem it solves.",
-    tags: ["Python", "Django", "HTML"],
-    github: "#",
+      "I'm continuously expanding my portfolio with projects that explore full-stack web development and user-centered design. My current focus is on building scalable applications with React and Django while exploring opportunities to work on more creative and immersive digital experiences.",
+    tags: ["Python", "Django", "React"],
+    github: "https://github.com/Sawfiyah",
     live: "#",
   },
 ];
