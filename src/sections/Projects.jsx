@@ -8,7 +8,7 @@ const projects = [
     description:
       "A responsive full-stack skincare e-commerce application built with React and Django, featuring product browsing, dynamic product pages, shopping cart functionality, and a user-friendly interface. Designed with an emphasis on responsive design, usability, and modern web development practices.",
     tags: ["React", "Django", "Python"],
-    github: "#",
+    github: "https://github.com/Sawfiyah",
     live: "https://puraskin.vercel.app",
   },
   {
@@ -17,7 +17,7 @@ const projects = [
       "A responsive full-stack flight booking platform for domestic travel, featuring flight search, booking workflows, dynamic flight listings, and a modern user interface. Developed using React for the frontend and Django for the backend with dummy flight data to simulate a real-world booking system",
     tags: ["Python", "Django", "React"],
     github: "https://github.com/Sawfiyah/AeroFind",
-    live: "#",
+    live: "https://fly-aero-find.vercel.app",
   },
   {
     title: "Currently Building",
