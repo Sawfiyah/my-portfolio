@@ -71,7 +71,7 @@ function Hero() {
             marginBottom: "1.5rem",
           }}
         >
-          A Fullstack Developer
+          A Fullstack Web Developer
         </h2>
 
         <p
