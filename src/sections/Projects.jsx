@@ -20,14 +20,6 @@ const projects = [
     live: "https://fly-aero-find.vercel.app",
   },
   {
-    title: "Toguna World Chat",
-    description:
-      "A responsive chat interface recreated from a professional design, with structured conversations, podcast cards, and responsive layouts built in React and Tailwind CSS.",
-    tags: ["React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/Sawfiyah/toguna-chat-assessment",
-    live: "https://toguna-chat.vercel.app/",
-  },
-  {
     title: "Law Firm Website",
     description:
       "A professional, responsive website for a law firm, designed to present legal services, establish credibility, and make it easy for potential clients to get in touch.",
