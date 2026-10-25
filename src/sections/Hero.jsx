@@ -1,33 +1,47 @@
+import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Minus, Square, X } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 
-const codeContent = `const developer = {
-  name: 'Sawfiyah Bagudu',
-  skills: [
-    'HTML', 'CSS', 'JavaScript',
-    'React', 'Python', 'Django'
-  ],
-  hardWorker: true,
-  quickLearner: true,
-  problemSolver: true,
-  hireable: function() {
-    return (
-      this.hardWorker &&
-      this.problemSolver &&
-      this.skills.length >= 1
-    );
-  }
-};`;
+const codeSnippets = {
+  about: `const developer = {
+  name: "Sawfiyah Bagudu",
+  role: "Fullstack Web Developer",
+  curiousByChoice: true,
+  favoritePart: "solving problems",
+};`,
+  stack: `const toolkit = {
+  frontend: ["HTML", "CSS", "JavaScript", "React"],
+  backend: ["Python", "Django"],
+  currentlyLearning: "always",
+};`,
+};
+
+const answers = [
+  {
+    code: 'project.status === "building" && project.isLive',
+    correct: false,
+  },
+  {
+    code: 'project.status === "live" && project.isLive',
+    correct: true,
+  },
+  {
+    code: 'project.status === "live" || project.isLive',
+    correct: false,
+  },
+];
 
 function Hero() {
   const width = useWindowSize();
   const isMobile = width < 768;
+  const [activePanel, setActivePanel] = useState("about");
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   return (
     <section
       id="home"
+      className="hero-section"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -38,8 +52,7 @@ function Hero() {
         gap: "3rem",
       }}
     >
-      {/* Left side */}
-      <div style={{ flex: 1 }}>
+      <div className="hero-copy">
         <p
           style={{
             color: "var(--accent-cyan)",
@@ -97,13 +110,13 @@ function Hero() {
               fontWeight: "600",
               transition: "all 0.2s",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--accent-cyan)";
-              e.currentTarget.style.color = "var(--bg-primary)";
+            onMouseEnter={(event) => {
+              event.currentTarget.style.backgroundColor = "var(--accent-cyan)";
+              event.currentTarget.style.color = "var(--bg-primary)";
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "var(--accent-cyan)";
+            onMouseLeave={(event) => {
+              event.currentTarget.style.backgroundColor = "transparent";
+              event.currentTarget.style.color = "var(--accent-cyan)";
             }}
           >
             Contact Me
@@ -121,74 +134,116 @@ function Hero() {
               fontWeight: "600",
               transition: "opacity 0.2s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(event) => (event.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={(event) => (event.currentTarget.style.opacity = "1")}
           >
             GitHub ↗
           </a>
         </div>
       </div>
 
-      {/* Right side - code block */}
-      <div
-        style={{
-          flex: 1,
-          width: isMobile ? "100%" : "auto",
-          backgroundColor: "var(--bg-card)",
-          borderRadius: "12px",
-          border: "1px solid var(--border-color)",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "0.5rem 0.8rem",
-            borderBottom: "1px solid var(--border-color)",
-            backgroundColor: "var(--bg-primary)",
-          }}
-        >
-          <div>User\developer\sawfiyah</div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              gap: "15px",
-            }}
-          >
-            <Minus
-              size={14}
-              color="var(--text-muted)"
-              style={{ cursor: "pointer" }}
-            />
-            <Square
-              size={10}
-              color="var(--text-muted)"
-              style={{ cursor: "pointer" }}
-            />
-            <X
-              size={14}
-              color="var(--text-muted)"
-              style={{ cursor: "pointer" }}
-            />
-          </div>
+      <div className="hero-code-window">
+        <div className="hero-window-bar">
+          <span className="hero-window-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="hero-window-path">sawfiyah / portfolio</span>
+          <span className="hero-window-spacer" aria-hidden="true" />
         </div>
 
-        <SyntaxHighlighter
-          language="javascript"
-          style={vscDarkPlus}
-          customStyle={{
-            margin: 0,
-            padding: "1.5rem",
-            fontSize: isMobile ? "0.75rem" : "0.85rem",
-            backgroundColor: "#0c0306",
-            lineHeight: 1.7,
-          }}
-        >
-          {codeContent}
-        </SyntaxHighlighter>
+        <div className="hero-tabs" aria-label="Explore the code window">
+          <button
+            type="button"
+            className={`hero-tab${activePanel === "about" ? " is-active" : ""}`}
+            aria-pressed={activePanel === "about"}
+            onClick={() => setActivePanel("about")}
+          >
+            about.js
+          </button>
+          <button
+            type="button"
+            className={`hero-tab${activePanel === "stack" ? " is-active" : ""}`}
+            aria-pressed={activePanel === "stack"}
+            onClick={() => setActivePanel("stack")}
+          >
+            stack.js
+          </button>
+          <button
+            type="button"
+            className={`hero-tab${activePanel === "debug" ? " is-active" : ""}`}
+            aria-pressed={activePanel === "debug"}
+            onClick={() => setActivePanel("debug")}
+          >
+            bug hunt
+          </button>
+        </div>
+
+        {activePanel === "debug" ? (
+          <div className="debug-panel">
+            <p className="debug-eyebrow">A tiny debugging challenge</p>
+            <p className="debug-question">
+              Which condition correctly checks that a project is live?
+            </p>
+            <pre className="debug-code">
+              <code>{`function isProjectLive(project) {
+  return /* choose the right condition */;
+}`}</code>
+            </pre>
+            <div className="debug-answers" aria-label="Choose a condition">
+              {answers.map((answer, index) => (
+                <button
+                  key={answer.code}
+                  type="button"
+                  className={`debug-answer${
+                    selectedAnswer === index
+                      ? answer.correct
+                        ? " is-correct"
+                        : " is-incorrect"
+                      : ""
+                  }`}
+                  aria-pressed={selectedAnswer === index}
+                  onClick={() => setSelectedAnswer(index)}
+                >
+                  <code>{answer.code}</code>
+                </button>
+              ))}
+            </div>
+            <p className="debug-feedback" aria-live="polite">
+              {selectedAnswer === null
+                ? "Pick a condition to test your instincts."
+                : answers[selectedAnswer].correct
+                  ? "Nice catch! Both checks need to be true."
+                  : "Not quite—check the status and whether both conditions must be true."}
+            </p>
+            {selectedAnswer !== null && (
+              <button
+                type="button"
+                className="debug-reset"
+                onClick={() => setSelectedAnswer(null)}
+              >
+                Try again
+              </button>
+            )}
+          </div>
+        ) : (
+          <SyntaxHighlighter
+            key={activePanel}
+            language="javascript"
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: "1.5rem",
+              fontSize: isMobile ? "0.75rem" : "0.85rem",
+              backgroundColor: "#0c0306",
+              lineHeight: 1.7,
+              minHeight: "245px",
+            }}
+          >
+            {codeSnippets[activePanel]}
+          </SyntaxHighlighter>
+        )}
       </div>
     </section>
   );

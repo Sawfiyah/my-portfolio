@@ -30,3 +30,236 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+button {
+  font: inherit;
+}
+
+.hero-copy {
+  flex: 1;
+  animation: rise-in 650ms ease-out both;
+}
+
+.hero-code-window {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: rise-in 750ms 100ms ease-out both;
+}
+
+.hero-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.hero-window-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.hero-window-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-pink);
+}
+
+.hero-window-dots span:nth-child(2) {
+  background: var(--accent-cyan);
+}
+
+.hero-window-dots span:nth-child(3) {
+  background: var(--border-color);
+}
+
+.hero-window-spacer,
+.hero-window-dots {
+  flex: 1;
+}
+
+.hero-window-path {
+  white-space: nowrap;
+}
+
+.hero-tabs {
+  display: flex;
+  overflow-x: auto;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-tab {
+  flex: 0 0 auto;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: color 180ms ease, background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.hero-tab:hover,
+.hero-tab.is-active {
+  color: var(--text-primary);
+  background: rgba(217, 117, 147, 0.08);
+}
+
+.hero-tab.is-active {
+  border-bottom-color: var(--accent-cyan);
+}
+
+.hero-tab:focus-visible,
+.debug-answer:focus-visible,
+.debug-reset:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: -2px;
+}
+
+.debug-panel {
+  min-height: 300px;
+  padding: 1.5rem;
+  background: #0c0306;
+  animation: panel-in 220ms ease-out both;
+}
+
+.debug-eyebrow {
+  margin-bottom: 0.6rem;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.debug-question {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.debug-code {
+  margin-bottom: 1rem;
+  color: #f1ced9;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.debug-answers {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.debug-answer {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 180ms ease, background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.debug-answer:hover {
+  border-color: var(--accent-cyan);
+  transform: translateX(3px);
+}
+
+.debug-answer code {
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.debug-answer.is-correct {
+  border-color: #69c995;
+  background: rgba(105, 201, 149, 0.1);
+}
+
+.debug-answer.is-incorrect {
+  border-color: var(--accent-pink);
+}
+
+.debug-feedback {
+  min-height: 1.5rem;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.debug-reset {
+  margin-top: 0.4rem;
+  padding: 0.35rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 550ms ease, transform 550ms ease;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
