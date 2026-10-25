@@ -17,26 +17,10 @@ const codeSnippets = {
 };`,
 };
 
-const answers = [
-  {
-    code: 'project.status === "building" && project.isLive',
-    correct: false,
-  },
-  {
-    code: 'project.status === "live" && project.isLive',
-    correct: true,
-  },
-  {
-    code: 'project.status === "live" || project.isLive',
-    correct: false,
-  },
-];
-
 function Hero() {
   const width = useWindowSize();
   const isMobile = width < 768;
   const [activePanel, setActivePanel] = useState("about");
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   return (
     <section
@@ -170,80 +154,23 @@ function Hero() {
           >
             stack.js
           </button>
-          <button
-            type="button"
-            className={`hero-tab${activePanel === "debug" ? " is-active" : ""}`}
-            aria-pressed={activePanel === "debug"}
-            onClick={() => setActivePanel("debug")}
-          >
-            bug hunt
-          </button>
         </div>
 
-        {activePanel === "debug" ? (
-          <div className="debug-panel">
-            <p className="debug-eyebrow">A tiny debugging challenge</p>
-            <p className="debug-question">
-              Which condition correctly checks that a project is live?
-            </p>
-            <pre className="debug-code">
-              <code>{`function isProjectLive(project) {
-  return /* choose the right condition */;
-}`}</code>
-            </pre>
-            <div className="debug-answers" aria-label="Choose a condition">
-              {answers.map((answer, index) => (
-                <button
-                  key={answer.code}
-                  type="button"
-                  className={`debug-answer${
-                    selectedAnswer === index
-                      ? answer.correct
-                        ? " is-correct"
-                        : " is-incorrect"
-                      : ""
-                  }`}
-                  aria-pressed={selectedAnswer === index}
-                  onClick={() => setSelectedAnswer(index)}
-                >
-                  <code>{answer.code}</code>
-                </button>
-              ))}
-            </div>
-            <p className="debug-feedback" aria-live="polite">
-              {selectedAnswer === null
-                ? "Pick a condition to test your instincts."
-                : answers[selectedAnswer].correct
-                  ? "Nice catch! Both checks need to be true."
-                  : "Not quite—check the status and whether both conditions must be true."}
-            </p>
-            {selectedAnswer !== null && (
-              <button
-                type="button"
-                className="debug-reset"
-                onClick={() => setSelectedAnswer(null)}
-              >
-                Try again
-              </button>
-            )}
-          </div>
-        ) : (
-          <SyntaxHighlighter
-            key={activePanel}
-            language="javascript"
-            style={vscDarkPlus}
-            customStyle={{
-              margin: 0,
-              padding: "1.5rem",
-              fontSize: isMobile ? "0.75rem" : "0.85rem",
-              backgroundColor: "#0c0306",
-              lineHeight: 1.7,
-              minHeight: "245px",
-            }}
-          >
-            {codeSnippets[activePanel]}
-          </SyntaxHighlighter>
-        )}
+        <SyntaxHighlighter
+          key={activePanel}
+          language="javascript"
+          style={vscDarkPlus}
+          customStyle={{
+            margin: 0,
+            padding: "1.5rem",
+            fontSize: isMobile ? "0.75rem" : "0.85rem",
+            backgroundColor: "#0c0306",
+            lineHeight: 1.7,
+            minHeight: "245px",
+          }}
+        >
+          {codeSnippets[activePanel]}
+        </SyntaxHighlighter>
       </div>
     </section>
   );

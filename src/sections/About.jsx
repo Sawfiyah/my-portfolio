@@ -1,5 +1,5 @@
 import useWindowSize from "../hooks/useWindowSize";
-import profilePic from "../assets/profile.jpg";
+import PhotoPuzzle from "../components/PhotoPuzzle";
 
 function About() {
   const width = useWindowSize();
@@ -36,6 +36,7 @@ function About() {
 
       {/* Content */}
       <div
+        className="about-content"
         style={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
@@ -47,19 +48,8 @@ function About() {
           padding: isMobile ? "1.5rem" : "2.5rem",
         }}
       >
-        {/* Picture */}
-        <div style={{ flexShrink: 0 }}>
-          <img
-            src={profilePic}
-            alt="Sawfiyah Bagudu"
-            style={{
-              width: isMobile ? "200px" : "300px",
-              height: isMobile ? "200px" : "300px",
-              borderRadius: "5%",
-              objectFit: "cover",
-              border: "2px solid var(--accent-pink)",
-            }}
-          />
+        <div className="about-puzzle">
+          <PhotoPuzzle />
         </div>
 
         {/* Text */}
