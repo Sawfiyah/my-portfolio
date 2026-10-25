@@ -11,8 +11,8 @@ const codeSnippets = {
   favoritePart: "solving problems",
 };`,
   stack: `const toolkit = {
-  frontend: ["HTML", "CSS", "JavaScript", "React"],
-  backend: ["Python", "Django"],
+  frontend: ["HTML", "CSS", "JavaScript", "React", "Svelte", "TypeScript", "Tailwind CSS"],
+  backend: ["Python", "Django", "FastAPI", "Flask"],
   currentlyLearning: "always",
 };`,
 };
@@ -118,7 +118,9 @@ function Hero() {
               fontWeight: "600",
               transition: "opacity 0.2s",
             }}
-            onMouseEnter={(event) => (event.currentTarget.style.opacity = "0.85")}
+            onMouseEnter={(event) =>
+              (event.currentTarget.style.opacity = "0.85")
+            }
             onMouseLeave={(event) => (event.currentTarget.style.opacity = "1")}
           >
             GitHub ↗

@@ -1,6 +1,12 @@
 import useWindowSize from "../hooks/useWindowSize";
 import { FaHtml5, FaCss3Alt, FaPython, FaReact } from "react-icons/fa";
-import { SiJavascript, SiDjango } from "react-icons/si";
+import {
+  SiJavascript,
+  SiDjango,
+  SiSvelte,
+  SiFastapi,
+  SiFlask,
+} from "react-icons/si";
 
 const skills = [
   { name: "HTML", icon: <FaHtml5 size={40} color="#e34f26" /> },
@@ -9,6 +15,9 @@ const skills = [
   { name: "React", icon: <FaReact size={40} color="#61dafb" /> },
   { name: "Python", icon: <FaPython size={40} color="#3776ab" /> },
   { name: "Django", icon: <SiDjango size={40} color="#092e20" /> },
+  { name: "FastAPI", icon: <SiFastapi size={40} color="#009688" /> },
+  { name: "Flask", icon: <SiFlask size={40} color="#f3d5de" /> },
+  { name: "Svelte", icon: <SiSvelte size={40} color="#ff3e00" /> },
 ];
 
 function Skills() {
