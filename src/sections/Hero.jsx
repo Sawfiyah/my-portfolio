@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import useWindowSize from "../hooks/useWindowSize";
+import MediaBetweenText from "../components/fancy/blocks/media-between-text";
+import Typewriter from "../components/fancy/text/typewriter";
+import sawfyImage from "../assets/sawfy.jpg";
 
 const codeSnippets = {
   about: `const developer = {
   name: "Sawfiyah Bagudu",
-  role: "Fullstack Web Developer",
+  role: "Junior Full-Stack Developer",
   curiousByChoice: true,
   favoritePart: "solving problems",
 };`,
@@ -40,12 +43,28 @@ function Hero() {
         <p
           style={{
             color: "var(--accent-cyan)",
-            fontSize: "1rem",
+            fontSize: isMobile ? "1.15rem" : "1.3rem",
             marginBottom: "0.5rem",
             letterSpacing: "0.1em",
           }}
         >
-          Hello, World! 👋
+          <Typewriter
+            as="span"
+            text={[
+              "Hello",
+              "Sannu",
+              "Bonjour",
+              "\u2067مرحبا\u2069",
+              "こんにちは",
+            ]}
+            speed={100}
+            deleteSpeed={45}
+            waitTime={1200}
+            initialDelay={250}
+            showCursor={false}
+            className="text-[var(--accent-cyan)]"
+          />{" "}
+          🙋‍♀️
         </p>
 
         <h1
@@ -57,7 +76,19 @@ function Hero() {
           }}
         >
           I'm{" "}
-          <span style={{ color: "var(--accent-pink)" }}>Sawfiyah Bagudu</span>
+          <MediaBetweenText
+            firstText="Sawfiyah"
+            secondText="Bagudu"
+            mediaUrl={sawfyImage}
+            mediaType="image"
+            alt="Sawfiyah"
+            as="span"
+            triggerType="hover"
+            className="inline-flex items-center gap-[0.12em] align-middle"
+            leftTextClassName="text-[var(--accent-cyan)]"
+            rightTextClassName="text-[var(--accent-cyan)]"
+            mediaContainerClassName="mx-[0.16em] inline-flex h-[1.5em] aspect-square shrink-0 overflow-hidden"
+          />
         </h1>
 
         <h2
@@ -68,7 +99,7 @@ function Hero() {
             marginBottom: "1.5rem",
           }}
         >
-          A Fullstack Web Developer
+          Junior Full-Stack Developer
         </h2>
 
         <p
@@ -79,8 +110,8 @@ function Hero() {
             marginBottom: "2rem",
           }}
         >
-          Analytical by nature, curious by choice. I build fullstack web
-          applications and enjoy the logic behind every line of code.
+          I love bringing ideas to life with software, untangling problems,
+          following my curiosity, and seeing what becomes possible.
         </p>
 
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -113,7 +144,7 @@ function Hero() {
             style={{
               padding: "0.8rem 1.8rem",
               backgroundColor: "var(--accent-pink)",
-              color: "white",
+              color: "var(--text-primary)",
               borderRadius: "8px",
               fontWeight: "600",
               transition: "opacity 0.2s",
@@ -128,51 +159,65 @@ function Hero() {
         </div>
       </div>
 
-      <div className="hero-code-window">
-        <div className="hero-window-bar">
-          <span className="hero-window-dots" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="hero-window-path">sawfiyah / portfolio</span>
-          <span className="hero-window-spacer" aria-hidden="true" />
+      <div className="hero-visual">
+        <div className="hero-portrait-frame">
+          <img
+            src={sawfyImage}
+            alt="Sawfiyah smiling outdoors"
+            className="hero-portrait"
+          />
+          <span className="hero-portrait-sticker">curious by choice ✳</span>
+          <span className="hero-portrait-caption">code / crochet / journal</span>
         </div>
-
-        <div className="hero-tabs" aria-label="Explore the code window">
-          <button
-            type="button"
-            className={`hero-tab${activePanel === "about" ? " is-active" : ""}`}
-            aria-pressed={activePanel === "about"}
-            onClick={() => setActivePanel("about")}
-          >
-            about.js
-          </button>
-          <button
-            type="button"
-            className={`hero-tab${activePanel === "stack" ? " is-active" : ""}`}
-            aria-pressed={activePanel === "stack"}
-            onClick={() => setActivePanel("stack")}
-          >
-            stack.js
-          </button>
-        </div>
-
-        <SyntaxHighlighter
-          key={activePanel}
-          language="javascript"
-          style={vscDarkPlus}
-          customStyle={{
-            margin: 0,
-            padding: "1.5rem",
-            fontSize: isMobile ? "0.75rem" : "0.85rem",
-            backgroundColor: "#0c0306",
-            lineHeight: 1.7,
-            minHeight: "245px",
-          }}
+        <div
+          className="hero-code-window"
+          style={{ width: "100%", maxWidth: "460px" }}
         >
-          {codeSnippets[activePanel]}
-        </SyntaxHighlighter>
+          <div className="hero-window-bar">
+            <span className="hero-window-dots" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="hero-window-path">sawfiyah / portfolio</span>
+            <span className="hero-window-spacer" aria-hidden="true" />
+          </div>
+
+          <div className="hero-tabs" aria-label="Explore the code window">
+            <button
+              type="button"
+              className={`hero-tab${activePanel === "about" ? " is-active" : ""}`}
+              aria-pressed={activePanel === "about"}
+              onClick={() => setActivePanel("about")}
+            >
+              about.js
+            </button>
+            <button
+              type="button"
+              className={`hero-tab${activePanel === "stack" ? " is-active" : ""}`}
+              aria-pressed={activePanel === "stack"}
+              onClick={() => setActivePanel("stack")}
+            >
+              stack.js
+            </button>
+          </div>
+
+          <SyntaxHighlighter
+            key={activePanel}
+            language="javascript"
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: "0.85rem",
+              fontSize: isMobile ? "0.65rem" : "0.72rem",
+              backgroundColor: "#21171b",
+              lineHeight: 1.5,
+              minHeight: "150px",
+            }}
+          >
+            {codeSnippets[activePanel]}
+          </SyntaxHighlighter>
+        </div>
       </div>
     </section>
   );

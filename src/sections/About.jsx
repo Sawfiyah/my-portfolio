@@ -65,22 +65,22 @@ function About() {
             <span style={{ color: "var(--text-primary)", fontWeight: "600" }}>
               Sawfiyah Bagudu
             </span>
-            , a Fullstack Developer with a background in Biochemistry and a
-            passion for building things that make sense.
+            , an early-career developer with a background in Biochemistry.
+            I'm curious about how things work and love bringing ideas to life
+            with software.
           </p>
           <p style={{ marginBottom: "1.2rem" }}>
-            I'm drawn to{" "}
+            I'm especially drawn to{" "}
             <span style={{ color: "var(--accent-cyan)" }}>
               Python and logic-heavy problems
             </span>
             . What excites me most about programming is the challenge of
-            understanding how systems work and figuring out how to bring ideas
-            to life through code.
+            understanding how systems work, solving problems, and exploring
+            what's possible when an idea becomes an application.
           </p>
           <p>
-            When I'm not coding, I'm usually reading, experimenting with new
-            technologies, or exploring different areas of tech that spark my
-            curiosity.
+            Away from my screen, I enjoy crocheting and journaling, two ways I
+            get to turn small ideas into something of my own.
           </p>
         </div>
       </div>

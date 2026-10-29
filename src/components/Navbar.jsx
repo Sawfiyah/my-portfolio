@@ -31,7 +31,7 @@ function Navbar() {
           color: "var(--accent-pink)",
         }}
       >
-        &lt;Sawfiyah /&gt;
+        Sawfiyah Bagudu
       </div>
 
       {/* Desktop links */}

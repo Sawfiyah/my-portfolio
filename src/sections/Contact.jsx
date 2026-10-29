@@ -58,7 +58,8 @@ function Contact() {
             fontSize: "0.95rem",
           }}
         >
-          I'm open to opportunities, collaborations or just a good conversation.
+          Open to junior full-stack opportunities, collaborations, and good
+          conversations.
         </p>
       </div>
 
@@ -80,6 +81,7 @@ function Contact() {
         >
           <a
             href="mailto:sawfiyabh@gmail.com"
+            className="contact-email"
             style={{
               display: "flex",
               alignItems: "center",

@@ -7,17 +7,30 @@ import {
   SiFastapi,
   SiFlask,
 } from "react-icons/si";
+import Gravity, { MatterBody } from "../components/fancy/physics/gravity";
 
 const skills = [
-  { name: "HTML", icon: <FaHtml5 size={40} color="#e34f26" /> },
-  { name: "CSS", icon: <FaCss3Alt size={40} color="#1572b6" /> },
-  { name: "JavaScript", icon: <SiJavascript size={40} color="#f7df1e" /> },
-  { name: "React", icon: <FaReact size={40} color="#61dafb" /> },
-  { name: "Python", icon: <FaPython size={40} color="#3776ab" /> },
-  { name: "Django", icon: <SiDjango size={40} color="#092e20" /> },
-  { name: "FastAPI", icon: <SiFastapi size={40} color="#009688" /> },
-  { name: "Flask", icon: <SiFlask size={40} color="#f3d5de" /> },
-  { name: "Svelte", icon: <SiSvelte size={40} color="#ff3e00" /> },
+  { name: "HTML", icon: <FaHtml5 size={28} color="#e34f26" /> },
+  { name: "CSS", icon: <FaCss3Alt size={28} color="#1572b6" /> },
+  { name: "JavaScript", icon: <SiJavascript size={28} color="#f7df1e" /> },
+  { name: "React", icon: <FaReact size={28} color="#61dafb" /> },
+  { name: "Python", icon: <FaPython size={28} color="#3776ab" /> },
+  { name: "Django", icon: <SiDjango size={28} color="#092e20" /> },
+  { name: "FastAPI", icon: <SiFastapi size={28} color="#009688" /> },
+  { name: "Flask", icon: <SiFlask size={28} color="#f3d5de" /> },
+  { name: "Svelte", icon: <SiSvelte size={28} color="#ff3e00" /> },
+];
+
+const skillPositions = [
+  { x: "18%", y: "12%" },
+  { x: "50%", y: "10%" },
+  { x: "82%", y: "12%" },
+  { x: "18%", y: "36%" },
+  { x: "50%", y: "34%" },
+  { x: "82%", y: "36%" },
+  { x: "18%", y: "60%" },
+  { x: "50%", y: "58%" },
+  { x: "82%", y: "60%" },
 ];
 
 function Skills() {
@@ -49,54 +62,82 @@ function Skills() {
             margin: "0.8rem auto 0",
           }}
         />
+        <p
+          style={{
+            marginTop: "1rem",
+            color: "var(--text-muted)",
+            fontSize: "0.85rem",
+          }}
+        >
+          Drag the skill cards to explore
+        </p>
       </div>
 
-      {/* Grid */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-          gap: "1.5rem",
-          maxWidth: "700px",
+          position: "relative",
+          height: isMobile ? "390px" : "410px",
+          maxWidth: "850px",
           margin: "0 auto",
+          overflow: "hidden",
+          border: "1px solid var(--border-color)",
+          borderRadius: "16px",
+          background:
+            "radial-gradient(ellipse at top, rgba(217, 117, 147, 0.12), transparent 65%), var(--bg-secondary)",
         }}
       >
-        {skills.map((skill) => (
-          <div
-            key={skill.name}
-            style={{
-              backgroundColor: "var(--bg-card)",
-              border: "1px solid var(--border-color)",
-              borderRadius: "12px",
-              padding: "2rem 1rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "0.8rem",
-              transition: "border-color 0.2s, transform 0.2s",
-              cursor: "default",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "var(--accent-cyan)";
-              e.currentTarget.style.transform = "translateY(-4px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--border-color)";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            {skill.icon}
-            <span
-              style={{
-                color: "var(--text-primary)",
-                fontWeight: "600",
-                fontSize: "0.95rem",
+        <Gravity
+          className="relative"
+          gravity={{ x: 0, y: 1 }}
+          grabCursor
+          resetOnResize
+          addTopWall
+        >
+          {skills.map((skill, index) => (
+            <MatterBody
+              key={skill.name}
+              x={skillPositions[index].x}
+              y={skillPositions[index].y}
+              matterBodyOptions={{
+                friction: 0.6,
+                restitution: 0.25,
+                density: 0.002,
+                inertia: Infinity,
               }}
+              className="flex items-center justify-center"
+              style={{ width: isMobile ? "94px" : "124px" }}
             >
-              {skill.name}
-            </span>
-          </div>
-        ))}
+              <div
+                style={{
+                  width: "100%",
+                  minHeight: "76px",
+                  padding: "0.8rem 0.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.45rem",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "12px",
+                  backgroundColor: "var(--bg-card)",
+                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                {skill.icon}
+                <span
+                  style={{
+                    color: "var(--text-primary)",
+                    fontWeight: "600",
+                    fontSize: "0.85rem",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {skill.name}
+                </span>
+              </div>
+            </MatterBody>
+          ))}
+        </Gravity>
       </div>
     </section>
   );

@@ -110,7 +110,11 @@ function PhotoPuzzle() {
         aria-label="Photo jigsaw puzzle"
       >
         {isPuzzleSolved ? (
-          <img className="puzzle-solved-image" src={profilePic} alt="Sawfiyah Bagudu" />
+          <img
+            className="puzzle-solved-image"
+            src={profilePic}
+            alt="Sawfiyah Bagudu"
+          />
         ) : (
           pieces.map((piece, index) => {
             const pieceRow = Math.floor(piece / puzzleSize);
@@ -159,11 +163,7 @@ function PhotoPuzzle() {
               ? `${moves} ${moves === 1 ? "move" : "moves"} · Select a piece to start.`
               : "Now select another piece to swap."}
         </p>
-        <button
-          type="button"
-          className="puzzle-reset"
-          onClick={restartPuzzle}
-        >
+        <button type="button" className="puzzle-reset" onClick={restartPuzzle}>
           {isPuzzleSolved ? "Play again" : "Shuffle"}
         </button>
       </div>
